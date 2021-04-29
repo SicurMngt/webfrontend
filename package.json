@@ -16,14 +16,14 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-clean": "^0.3.2",
     "gulp-connect": "^5.0.0",
     "gulp-install": "^1.1.0",
     "gulp-nunjucks-render": "^2.2.2",
     "gulp-open": "^2.1.0",
-    "gulp-sass": "^3.2.1",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.3",
     "@tryghost/content-api": "^1.0.0",
     "gulp-data": "^1.3.1",
