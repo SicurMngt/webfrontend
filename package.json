@@ -16,7 +16,7 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-clean": "^0.3.2",
     "gulp-connect": "^5.0.0",
