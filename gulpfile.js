@@ -44,7 +44,7 @@ var Paths = {
 
 
 
-gulp.task('build', function() {
+gulp.task(gulp.series('build'), function() {
     //load posts to JSONdata
     api.posts
         .browse({
@@ -105,7 +105,7 @@ gulp.task('build', function() {
 
 
 /* SASS */
-gulp.task('compile:scss', function() {
+gulp.task(gulp.series('compile:scss'), function() {
     return gulp.src(Paths.SCSS_TOOLKIT_SOURCES)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -115,7 +115,7 @@ gulp.task('compile:scss', function() {
 });
 
 /* END SASS */
-gulp.task('watch', function() {
+gulp.task(gulp.series('watch'), function() {
     gulp.watch(Paths.SCSS, ['compile:scss']);
     gulp.watch('html/**/*.+(html|nunjucks)', ['build']);
     gulp.watch('html/**/**/*.+(html|nunjucks)', ['build']);
@@ -123,7 +123,7 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('server', function() {
+gulp.task(gulp.series('server'), function() {
     connect.server({
         host: "0.0.0.0",
         port: 9001,
