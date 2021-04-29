@@ -44,7 +44,7 @@ var Paths = {
 
 
 
-gulp.task('build', gulp.series(function() {
+gulp.task('build', function() {
     //load posts to JSONdata
     api.posts
         .browse({
@@ -101,40 +101,40 @@ gulp.task('build', gulp.series(function() {
         .catch((err) => {
             console.error(err);
         });
-}));
+});
 
 
 /* SASS */
-gulp.task('compile:scss', gulp.series(function() {
+gulp.task('compile:scss', function() {
     return gulp.src(Paths.SCSS_TOOLKIT_SOURCES)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write(Paths.HERE))
         .pipe(gulp.dest(Paths.CSS));
-}));
+});
 
 /* END SASS */
-gulp.task('watch', gulp.series(function() {
+gulp.task('watch', function() {
     gulp.watch(Paths.SCSS, ['compile:scss']);
     gulp.watch('html/**/*.+(html|nunjucks)', ['build']);
     gulp.watch('html/**/**/*.+(html|nunjucks)', ['build']);
     
-}));
+});
 
 
-gulp.task('server', gulp.series(function() {
+gulp.task('server', function() {
     connect.server({
         host: "0.0.0.0",
         port: 9001,
         livereload: true,
 		root:"dist"
     });
-}));
+});
 
-gulp.task('default', ['server', 'watch'], gulp.series(function() {
+gulp.task('default', ['server', 'watch'], function() {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
         }));
-}));
+});
