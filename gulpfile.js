@@ -44,7 +44,7 @@ var Paths = {
 
 
 
-gulp.task(gulp.series('build'), function() {
+gulp.task('build', gulp.series(function() {
     //load posts to JSONdata
     api.posts
         .browse({
@@ -101,40 +101,40 @@ gulp.task(gulp.series('build'), function() {
         .catch((err) => {
             console.error(err);
         });
-});
+}));
 
 
 /* SASS */
-gulp.task(gulp.series('compile:scss'), function() {
+gulp.task('compile:scss', gulp.series(function() {
     return gulp.src(Paths.SCSS_TOOLKIT_SOURCES)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write(Paths.HERE))
         .pipe(gulp.dest(Paths.CSS));
-});
+}));
 
 /* END SASS */
-gulp.task(gulp.series('watch'), function() {
+gulp.task('watch', gulp.series(function() {
     gulp.watch(Paths.SCSS, ['compile:scss']);
     gulp.watch('html/**/*.+(html|nunjucks)', ['build']);
     gulp.watch('html/**/**/*.+(html|nunjucks)', ['build']);
     
-});
+}));
 
 
-gulp.task(gulp.series('server'), function() {
+gulp.task('server', gulp.series(function() {
     connect.server({
         host: "0.0.0.0",
         port: 9001,
         livereload: true,
 		root:"dist"
     });
-});
+}));
 
-gulp.task(gulp.series('default'), ['server', 'watch'], function() {
+gulp.task('default', ['server', 'watch'], gulp.series(function() {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
         }));
-});
+}));
