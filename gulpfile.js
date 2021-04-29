@@ -132,7 +132,7 @@ gulp.task(gulp.series('server'), function() {
     });
 });
 
-gulp.task('default', ['server', 'watch'], function() {
+gulp.task(gulp.series('default'), ['server', 'watch'], function() {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
