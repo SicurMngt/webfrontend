@@ -132,9 +132,9 @@ gulp.task('server', function() {
     });
 });
 
-gulp.task('default', ['server', 'watch'], function() {
+gulp.task('default', gulp.series(['server', 'watch'], function() {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
         }));
-});
+}));
