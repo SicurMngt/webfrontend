@@ -135,7 +135,7 @@ gulp.task('server', function(done) {
     done();
 });
 
-gulp.task('default', gulp.series(['server', 'watch'], function(done) {
+gulp.task('default', gulp.series(['watch', 'series'], function(done) {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
