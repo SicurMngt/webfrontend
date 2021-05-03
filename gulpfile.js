@@ -9,8 +9,6 @@ const api = new GhostContentAPI({
 
 var gulp = require('gulp');
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-
 var data = require('gulp-data');
 
 var path = require('path');
