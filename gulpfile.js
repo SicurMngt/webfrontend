@@ -118,7 +118,12 @@ gulp.task('compile:scss', function() {
 
 /* END SASS */
 gulp.task('watch', function(done) {
-    gulp.watch(Paths.SCSS, ['compile:scss']);
+    gulp.src(Paths.SCSS_TOOLKIT_SOURCES)
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write(Paths.HERE))
+        .pipe(gulp.dest(Paths.CSS));
     gulp.watch('html/**/*.+(html|nunjucks)', ['build']);
     gulp.watch('html/**/**/*.+(html|nunjucks)', ['build']);
     done();
