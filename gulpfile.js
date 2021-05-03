@@ -46,7 +46,7 @@ var Paths = {
 
 
 
-gulp.task('build', function() {
+gulp.task('build', function(done) {
     //load posts to JSONdata
     api.posts
         .browse({
@@ -97,12 +97,13 @@ gulp.task('build', function() {
                 .catch((err) => {
                     console.error(err);
                 });
-
+	    
             // write file
         })
         .catch((err) => {
             console.error(err);
         });
+	done();
 });
 
 
