@@ -117,26 +117,29 @@ gulp.task('compile:scss', function() {
 });
 
 /* END SASS */
-gulp.task('watch', function() {
+gulp.task('watch', function(done) {
     gulp.watch(Paths.SCSS, ['compile:scss']);
     gulp.watch('html/**/*.+(html|nunjucks)', ['build']);
     gulp.watch('html/**/**/*.+(html|nunjucks)', ['build']);
-    
+    done();
 });
 
 
-gulp.task('server', function() {
+gulp.task('server', function(done) {
     connect.server({
         host: "0.0.0.0",
         port: 9001,
         livereload: true,
 		root:"dist"
     });
+    done();
 });
 
-gulp.task('default', gulp.series(['server', 'watch'], function() {
+gulp.task('default', gulp.series(['server', 'watch'], function(done) {
     gulp.src(__filename)
         .pipe(open({
             uri: 'http://localhost:9001/'
         }));
+	
+    done();
 }));
